@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html layout:decorate="~{admin/layouts/main}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Post</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="row col-md-12">
+				<div class="col-md-10">
+					<h2>List Posts</h2>
+				</div>
+				<div class="col-md-2">
+					<a th:href="@{/admin/post/create}" style="float: right;"
+						class="btn btn-primary">Create</a>
+				</div>
+			</div>
+
+			<table id="tableUser" class="table table-bordered table-hover">
+				<thead class="table-dark">
+					<tr>
+						<th>Title</th>
+						<th>Content</th>
+						<th>User</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="post : ${posts}">
+						<td th:text="${post.title}"></td>
+						<td th:text="${post.content}"></td>
+						<td th:text="${post.userName}"></td>
+						<td><a class="btn btn-primary"
+							th:href="@{'/admin/users/edit/' + ${post.id}}">Edit</a>
+
+							<button class="btn btn-danger delete" data-toggle="modal"
+								data-target="#deleteModal" th:data-id="${post.id}">Delete</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

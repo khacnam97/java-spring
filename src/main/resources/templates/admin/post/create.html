@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html layout:decorate="~{admin/layouts/main}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<form method="post" role="form" th:action="@{/admin/post/save}" th:object="${post}">
+					<div class="form-group">
+						<div class="form-group mb-3">
+							<label for="">Title</label> <input type="text"
+								class="form-control" id="title" name="title" th:field="*{title}" aria-describedby="titleHelp"
+								placeholder="Tile">
+								<p th:errors="*{title}" class="text-danger"
+								th:if="${#fields.hasErrors('title')}"></p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Content</label>
+						<textarea rows="" class="form-control" name="content" th:field="*{content}" cols=""></textarea>
+						<p th:errors="*{content}" class="text-danger"
+								th:if="${#fields.hasErrors('content')}"></p>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
